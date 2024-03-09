@@ -62,8 +62,8 @@ jobs:
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
-        with:
-          name: .net-app
+        # with:
+          # name: .net-app
       
       - name: Login to Azure
         uses: azure/login@v1
@@ -78,7 +78,8 @@ jobs:
         with:
           app-name: 'appsvcndb'
           slot-name: 'Production'
-          package: .
+          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_4E474D9914B64CEB91F818A2358AB7EF }}
+          package: ./.net-app/
 
       - name: Azure SQL Deploy
         uses: Azure/sql-action@v2
